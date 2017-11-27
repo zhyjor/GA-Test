@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ *目测是计算理论Q和实际的优化后的Q的比值，rate,计算优化率
  * @author wuhao
  */
 public class Update_pipe_data3 {
