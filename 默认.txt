@@ -1,0 +1,3 @@
+jdbc:mysql://10.1.16.50:3306/虚拟计量
+sample
+sample@chuyun
