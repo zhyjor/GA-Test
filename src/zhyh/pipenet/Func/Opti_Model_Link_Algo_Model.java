@@ -5,7 +5,6 @@
  */
 package zhyh.pipenet.Func;
 
-import Opti.Functions.Prepare_for_Opti;
 
 /**
  *
@@ -45,24 +44,7 @@ public class Opti_Model_Link_Algo_Model {
         for (int i = 0; i < num; i++) {
             result = result + y1[i];
         }
-        System.out.println("zhyh-单管网模型的适应性函数：" + result);
-        return result;
-    }
-
-    /**
-     * 这里计算的是y[i]的方差，然后求和，是适应度的算法，可以改进！
-     */
-    private double Difference(double[] X) {
-        int num = X.length;
-        double result = 0;
-        double dff = 0;
-        double y1[] = Curve1(X);
-        double y2[] = Curve2(X);
-        for (int i = 0; i < num; i++) {
-            dff = (y1[i] - y2[i]);
-            result = result + dff * dff;
-        }
-//        System.out.println("Opti_Model_link_Algorrithm_Model：：两个模型结果的Difference值为：" + result);
+//        System.out.println("zhyh-单管网模型的适应性函数：" + result);
         return result;
     }
 
@@ -71,14 +53,6 @@ public class Opti_Model_Link_Algo_Model {
      */
     private double[] Curve1(double[] X) {//输入一个子树全部点名称，点对应产量
         double y[] = pfo.Y1(X);
-        return y;
-    }
-
-    /**
-     * 曲线2，地层模型的值
-     */
-    private double[] Curve2(double[] X) {
-        double y[] = pfo.Y2(X);
         return y;
     }
 }

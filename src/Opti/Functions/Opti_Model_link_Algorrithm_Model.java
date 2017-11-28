@@ -43,7 +43,7 @@ public class Opti_Model_link_Algorrithm_Model {
     }
 
     /**
-     * 曲线1，一个独立树结构井网的地层方程组
+     * 曲线1，管网部分方程组
      */
     private double[] Curve1(double[] X) {//输入一个子树全部点名称，点对应产量
         double y[] = pfo.Y1(X);
@@ -51,7 +51,7 @@ public class Opti_Model_link_Algorrithm_Model {
     }
 
     /**
-     * 曲线2，管网模型的值
+     * 曲线2，地层部分方程组
      */
     private double[] Curve2(double[] X) {
         double y[] = pfo.Y2(X);
