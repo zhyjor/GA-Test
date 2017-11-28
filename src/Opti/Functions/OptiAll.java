@@ -45,7 +45,10 @@ public class OptiAll {
     }
 
     /**
-     * 计算各个井的产量上下线
+     * 计算各个井的产量上下限
+     * 
+     * 可以发现，所有的最大值加在一起的优化效率肯定最大，但是肯定会受到一定地面模型的影响，因此，需要优化，找到最好的优化
+     * 效果下的最大最小值
      */
     private void input(List<String> tree_well) {
         int num = tree_well.size();//得到子树中的全部井.size();
@@ -71,8 +74,8 @@ public class OptiAll {
 
         for (String o : StaticDataMap7.rootofNeedOptiTree) {
             target_Opti = o;
-            well_in_childtree = StaticDataMap7.well_in_childtree.get(o);
-            allpoint_in_childtree = StaticDataMap7.allPoint_in_childtree.get(o);
+            well_in_childtree = StaticDataMap7.well_in_childtree.get(o);//需要优化的子树结构中全部井的名称，其值由 Starter3 类推送过来
+            allpoint_in_childtree = StaticDataMap7.allPoint_in_childtree.get(o);//需要优化的子树结构中全部点的名称，其值由 Starter3 类推送过来
             input(well_in_childtree);
             ss = new SouSuo();//优化算法
             ss.start();
