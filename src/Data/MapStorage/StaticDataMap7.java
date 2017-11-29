@@ -39,6 +39,8 @@ public class StaticDataMap7 {
     public static Map<String, List<String>> gotorootPath;//各个井到子树root点的路径
     public static Map<String, List<String>> allPoint_in_childtree;//需要优化的子树结构中全部点的名称，其值由 Starter3 类推送过来
     public static Map<String, List<String>> well_in_childtree;//需要优化的子树结构中全部井的名称，其值由 Starter3 类推送过来
+    
+    public static Map<String, List<String>> well_in_childtree_peican;//不同类型井的配产数据
 
     /**
      * 管道
@@ -94,6 +96,8 @@ public class StaticDataMap7 {
     public static Map<String, Double> CoalSeamDensity;//煤层密度,kg/m3
     public static Map<String, Double> deltaBcumap;
     public static Map<String, Double> mdmap;//试验常数
+    
+    
 
     /**
      * 为上面变量赋值
