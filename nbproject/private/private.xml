@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/E:/myGithub/Learn-Algorithms/GA-Test/运行优化系统20170214/src/Opti/Functions/Starter6.java</file>
             <file>file:/E:/myGithub/Learn-Algorithms/GA-Test/运行优化系统20170214/src/Background_functions/Key3_Updater2.java</file>
             <file>file:/E:/myGithub/Learn-Algorithms/GA-Test/运行优化系统20170214/src/Background_functions/Key2_Opti.java</file>
             <file>file:/E:/myGithub/Learn-Algorithms/GA-Test/运行优化系统20170214/src/Opti/Functions/OptiAll.java</file>
             <file>file:/E:/myGithub/Learn-Algorithms/GA-Test/运行优化系统20170214/src/Model/PipeNet/Update_pipe_data3.java</file>
+=======
+            <file>file:/E:/Learn%20Algorithm/GA-Test/src/zhyh/pipenet/Func/Prepare_for_Opti.java</file>
+            <file>file:/E:/Learn%20Algorithm/GA-Test/src/zhyh/pipenet/Func/Opti_Model_Link_Algo_Model.java</file>
+            <file>file:/E:/Learn%20Algorithm/GA-Test/src/zhyh/pipenet/Func/Algo_Model_link_Opti_Model.java</file>
+            <file>file:/E:/Learn%20Algorithm/GA-Test/src/zhyh/pipenet/Func/opti_Pipenet_Part.java</file>
+>>>>>>> b569e3d162c8742e85acb42b7c49a3d871b55de1
         </group>
     </open-files>
 </project-private>

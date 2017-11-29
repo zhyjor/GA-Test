@@ -29,6 +29,7 @@ public class Index {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        System.out.println("----------------管网数据遗传算法优化开始-----------------");
         new Index().Opti(false);//false优化时不使用现场实际CL值，使用理论值
     }
 }

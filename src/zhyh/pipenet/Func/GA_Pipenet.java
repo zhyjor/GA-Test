@@ -22,7 +22,7 @@ import org.apache.commons.math3.genetics.TournamentSelection;
 /**
  * 遗传算法采用java.commons.math进行计算
  *
- * @author 武浩
+ * @author zhyh
  */
 public class GA_Pipenet {
 
