@@ -23,8 +23,8 @@ public class Opti_Model_Link_Algo_Model {
      * 修改这部分的是影响函数
      * 
      */
-    public double fitness(double[] X) {
-        double fit =  pipenetOutput(X);
+    public double fitness(double[] X, double[] peican) {
+        double fit =  pipenetOutput(X,peican);
         return fit;
     }
     
@@ -34,15 +34,24 @@ public class Opti_Model_Link_Algo_Model {
      * 方差的做法是方差越大适应度越小，所以会选择倒数
      * 
      * 针对管网模型的适应度算法，目的是最大化产量，值越大的适应度应该越高
+     * 
+     * 修改为输出的优化模型的产量比上配产
      * @param X
      * @return 
      */
-    private double pipenetOutput(double[] X){
+    private double pipenetOutput(double[] X, double[] peican){
         int num = X.length;
+        int num2 = peican.length;
         double result = 0;
         double y1[] = Curve1(X);//管网模型的输出
-        for (int i = 0; i < num; i++) {
-            result = result + y1[i];
+        if(num >= num2){
+            for (int i = 0; i < num; i++) {
+                result = result + y1[i]/peican[i];
+            }
+        }else{
+            for (int i = 0; i < num; i++) {
+                    result = result + y1[i];
+            }
         }
 //        System.out.println("zhyh-单管网模型的适应性函数：" + result);
         return result;
