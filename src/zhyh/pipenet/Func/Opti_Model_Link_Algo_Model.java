@@ -36,6 +36,10 @@ public class Opti_Model_Link_Algo_Model {
      * 针对管网模型的适应度算法，目的是最大化产量，值越大的适应度应该越高
      * 
      * 修改为输出的优化模型的产量比上配产
+     * 
+     * 最新的适应度函数修改为配产的数据
+     * 
+     * 
      * @param X
      * @return 
      */
@@ -44,15 +48,11 @@ public class Opti_Model_Link_Algo_Model {
         int num2 = peican.length;
         double result = 0;
         double y1[] = Curve1(X);//管网模型的输出
-        if(num >= num2){
-            for (int i = 0; i < num; i++) {
-                result = result + y1[i]/peican[i];
-            }
-        }else{
-            for (int i = 0; i < num; i++) {
-                    result = result + y1[i];
-            }
+       
+        for (int i = 0; i < num; i++) {
+            result = result + Math.pow((y1[i]-peican[i]),2);
         }
+       
 //        System.out.println("zhyh-单管网模型的适应性函数：" + result);
         return result;
     }
