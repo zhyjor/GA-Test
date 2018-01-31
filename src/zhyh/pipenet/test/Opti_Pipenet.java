@@ -7,7 +7,7 @@ package zhyh.pipenet.test;
 
 import Data.MapStorage.StaticDataMap7;
 import Model.Well.Well_bore_P_nihe;
-import Opti.Algorithm.SouSuo;
+
 import Opti.Functions.Opti_Result_Storager;
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -4,13 +4,9 @@
  */
 package zhyh.pipenet.Func;
 
-
-import Data.MapStorage.StaticDataMap7;
 import java.util.List;
+import java.util.ArrayList;
 import zhyh.pipenet.test.Opti_Pipenet;
-import static zhyh.pipenet.test.Opti_Pipenet.Qmax;
-import static zhyh.pipenet.test.Opti_Pipenet.Qmin;
-import static zhyh.pipenet.test.Opti_Pipenet.well_for_estimate;
 
 
 /**
@@ -39,24 +35,72 @@ public class Algo_Model_link_Opti_Model {
     
     public void getsetPeiCanByType(List<String> tree_well){
         
+        System.out.println("需要配产的井的列表：" + tree_well.toString());
+        
         int num = tree_well.size();//得到子树中的全部井.size();
          pecan_well = new double[num];
          double peican = 30000;
         for (int i = 0; i < num; i++) {
             String name = tree_well.get(i);
             //什么井
-            if(name == "LX-101-1H" || name == "LX-101-2H" || name == "LX-101-3H" || name == "LX-102-3H" || name == "LX-103-3H"
-                    || name == "LX-104-1H" || name == "LX-105-1H"){
-                peican = 32500;
-            
-            }else if(name == "LX-102" || name == "LX-102-2D"){
-                peican = 10000;
-            }else if(name == "LX-103" || name == "LX-103-2D" || name == "LX-103-4D" || name == "LX-104"
-                     || name == "LX-104-3D" || name == "LX-104-7D"
-                     || name == "LX-105-2D" || name == "LX-105-3D"){
-                peican = 30000;
-            }else{
-                peican = 30000;
+            switch(name){
+                case "LX-101-1H":
+                   peican = 9000;
+                   break;
+                case "LX-101-4H":
+                    peican = 6000;
+                    break;
+                case "LX-101-5H":
+                    peican = 23000;
+                    break;
+                case "LX-102":
+                    peican = 15100;
+                    break;
+                case "LX-102-2D":
+                    peican = 3500;
+                    break;
+                case "LX-102-3H":
+                    peican = 15000;
+                    break;
+                case "LX-103":
+                    peican = 43500;
+                    break;
+                case "LX-103-1D":
+                    peican = 15200;
+                    break;
+                case "LX-103-3H":
+                    peican = 24000;
+                    break;
+                case "LX-103-4D":
+                    peican = 3200;
+                    break;
+                case "LX-104":
+                    peican = 4000;
+                    break;
+                case "LX-104-1H":
+                    peican = 7000;
+                    break;
+                case "LX-104-3D":
+                    peican = 8500;
+                    break;
+                case "LX-104-7D":
+                    peican = 5800;
+                    break;
+                case "LX-105-1H":
+                    peican = 24000;
+                    break;
+                case "LX-105-2D":
+                    peican = 3800;
+                    break;
+                case "LX-105-3D":
+                    peican = 14000;
+                    break;
+                case "LX-4":
+                    peican = 12900;
+                    break;
+                default:
+                    peican = 32500;
+                    break;
             }
             pecan_well[i] = peican;
         }

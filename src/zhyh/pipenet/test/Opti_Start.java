@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package zhyh.pipenet.test;
-
-import Opti.Functions.OptiAll;
-
 /**
  *
  * @author JackHou
