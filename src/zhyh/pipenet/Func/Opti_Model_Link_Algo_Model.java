@@ -50,7 +50,7 @@ public class Opti_Model_Link_Algo_Model {
         double y1[] = Curve1(X);//管网模型的输出
        
         for (int i = 0; i < num; i++) {
-            result = result + Math.pow((y1[i]-peican[i]),2);
+            result = result + 1/(Math.pow((y1[i]-peican[i]),2));
         }
        
 //        System.out.println("zhyh-单管网模型的适应性函数：" + result);
