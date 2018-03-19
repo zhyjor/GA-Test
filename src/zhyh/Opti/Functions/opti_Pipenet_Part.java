@@ -1,16 +1,13 @@
 /*
  * 该类是管网模型集中化，转为优化方程，用于Prepare_for_Opti类
  */
-package zhyh.pipenet.Func;
-
+package zhyh.Opti.Functions;
 
 import zhyh.Model.PipeNet.Pipe_CLQ2;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import zhyh.pipenet.test.Opti_Pipenet;
-
 
 /**
  *
@@ -32,8 +29,8 @@ public class opti_Pipenet_Part {
     public opti_Pipenet_Part() {
         allpointlist = new ArrayList();
         allwelllist = new ArrayList();
-        allpointlist.addAll(Opti_Pipenet.allpoint_in_childtree);//获取子树结构全部点
-        allwelllist.addAll(Opti_Pipenet.well_in_childtree);
+        allpointlist.addAll(OptiAll.allpoint_in_childtree);//获取子树结构全部点
+        allwelllist.addAll(OptiAll.well_in_childtree);
         wellnum = allwelllist.size();
         allnum = allpointlist.size();
         allpointQ = new double[allnum];
@@ -55,7 +52,7 @@ public class opti_Pipenet_Part {
             System.out.println("");
         }
         allpointQ = duiyingQ(allwelllist, Q, allpointlist);
-//        if (Opti_Pipenet.target_Opti.equals("FZ-1")) {
+//        if (OptiAll.target_Opti.equals("FZ-1")) {
 //            System.out.println("");
 //            System.out.println("allwelllist" + allwelllist + "=>>>" + Arrays.toString(Q));
 //            System.out.println("allpointlist" + allpointlist + "=>>>" + Arrays.toString(allpointQ));
@@ -78,8 +75,8 @@ public class opti_Pipenet_Part {
      */
     private double deltaP(double y, String well) {
         double Y = Math.pow(y, 0.5);
-        double Pmax = Opti_Pipenet.wellholePmax.get(well);
-        double Pmin = Opti_Pipenet.wellholePmin.get(well);
+        double Pmax = OptiAll.wellholePmax.get(well);
+        double Pmin = OptiAll.wellholePmin.get(well);
         double deltaP = (Pmax - Pmin) * (Y - 0.2) / 9.8 + Pmin;
         double P = Y + deltaP;
         return P * P;

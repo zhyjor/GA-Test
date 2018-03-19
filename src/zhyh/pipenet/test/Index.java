@@ -5,8 +5,8 @@
  */
 package zhyh.pipenet.test;
 
-import Background_functions.Key2_Opti;
-import Data.MapStorage.Starter_third;
+import zhyh.Background_functions.Key2_Opti;
+import zhyh.Data.MapStorage.Starter_third;
 
 /**
  *

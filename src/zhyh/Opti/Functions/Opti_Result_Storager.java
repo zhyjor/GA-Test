@@ -1,9 +1,8 @@
 /*
  * 用来存储优化结果，等待后续处理，用于OptiAll类中
  */
-package zhyh.pipenet.Func;
+package zhyh.Opti.Functions;
 
-import zhyh.Opti.Functions.*;
 import zhyh.Data.InputandClassify.NameList4;
 import zhyh.Data.InputandClassify.StaticData2;
 import zhyh.Data.MapStorage.DynamicDataMap8;
