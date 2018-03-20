@@ -1,14 +1,14 @@
 /*
  * 用来存储优化结果，等待后续处理，用于OptiAll类中
  */
-package zhyh.pipenet.Func;
+package Opti.Functions;
 
-import zhyh.Data.InputandClassify.NameList4;
-import zhyh.Data.InputandClassify.StaticData2;
-import zhyh.Data.MapStorage.DynamicDataMap8;
-import zhyh.Data.MapStorage.StaticDataMap7;
-
-import zhyh.Tool.Data_resource.DBcontroller;
+import Data.InputandClassify.NameList4;
+import Data.InputandClassify.StaticData2;
+import Data.MapStorage.DynamicDataMap8;
+import Data.MapStorage.StaticDataMap7;
+import Model.CoalSeam.preparedata.Best_Pwf;
+import Tool.Data_resource.DBcontroller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +33,7 @@ public class Opti_Result_Storager {
     public static List<String> allwelllist;
     public static List<Double> allresult_Q;
     private static List<Double> allresult_P;
-
+    private Best_Pwf bp = new Best_Pwf();
     private Map<String, Double> Opti_PipeQ;//管道流量累加，起点名搜索
     List<Double> Qpipe;//优化得到的管道输量
     Map<String, Double> RealQ;//管道实际输量的查询
@@ -63,7 +63,7 @@ public class Opti_Result_Storager {
             q = Q[i];
             allwelllist.add(name);
             allresult_Q.add(q);
-           
+            allresult_P.add(bp.pwf(name, q));
         }
     }
 
@@ -72,6 +72,7 @@ public class Opti_Result_Storager {
      */
     public void output_to_database() {
         db.UpdateData("Well", "Best_Q", allresult_Q, "Name", allwelllist);
+        db.UpdateData("Well", "Best_Pwf", allresult_P, "Name", allwelllist);
         String pipe;
         Sum_PipeQ(allwelllist, allresult_Q);
         List<Integer> No = new ArrayList();
@@ -119,7 +120,7 @@ public class Opti_Result_Storager {
         List<Double> temp = new ArrayList();
         for (String o : StaticData2.getValveName()) {
             temp.add(Opti_PipeQ.get(o));
-            System.out.println("阀组-"+o+":" + Opti_PipeQ.get(o));
+            System.out.println("阀组：" + Opti_PipeQ.get(o));
         }
         db.UpdateData("Valve", "Opti_Q", temp, "Name", StaticData2.getValveName());
         temp = new ArrayList();

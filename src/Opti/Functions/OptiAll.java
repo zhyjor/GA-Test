@@ -1,46 +1,47 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *优化整个气田，还没写结果存储的部分功能
  */
-package zhyh.pipenet.test;
+package Opti.Functions;
 
-import zhyh.Data.MapStorage.StaticDataMap7;
-
-
-import zhyh.pipenet.Func.Opti_Result_Storager;
+import Data.MapStorage.StaticDataMap7;
+import Model.Well.Well_bore_P_nihe;
+import Opti.Algorithm.SouSuo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * 优化整个气田的方法
  *
- * @author zhyh
+ * @author 武浩
  */
-public class Opti_Pipenet {
+public class OptiAll {
+
     public static String target_Opti;//本次优化的膜牧目标
     public static List<String> well_in_childtree;
     public static List<String> allpoint_in_childtree;
     public static double[] Qmax;//目标点集的产量上限，用于GAdecoder类中
     public static double[] Qmin;//目标点集的产量下限，用于GAdecoder类中
-    private Opti_Algorithm ss;
+    private SouSuo ss;
     private Opti_Result_Storager ors;
     public static boolean output = true;//转为评价功能而设置的，组织结果输出至数据库
     public static List<String> well_for_estimate;//评价功能，专为评价单井的影响而设置
-    
+    private Well_bore_P_nihe wp;
     public static Map<String, Double> wellholePmin;
     public static Map<String, Double> wellholePmax;
 
-    public Opti_Pipenet() {
+    public OptiAll() {
         well_for_estimate = new ArrayList();
         Qmax = new double[1];
         Qmin = new double[1];
         well_in_childtree = new ArrayList();
         allpoint_in_childtree = new ArrayList();
         ors = new Opti_Result_Storager();
-        ss = new Opti_Algorithm();
-       
+        ss = new SouSuo();
+        wp = new Well_bore_P_nihe();
+        wellholePmin=wp.minP;
+        wellholePmax=wp.maxP;
     }
 
     /**
@@ -62,18 +63,18 @@ public class Opti_Pipenet {
 
         }
         System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        System.out.println("zhyh-Opti_Pipenet:>>>> " + tree_well + " >>>优化变量范围：" + Arrays.toString(Qmin) + "=>" + Arrays.toString(Qmax));
+        System.out.println("OptiAll:>>>> " + tree_well + " >>>优化变量范围：" + Arrays.toString(Qmin) + "=>" + Arrays.toString(Qmax));
         System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
     }
 
-    public void optstart() throws InterruptedException {//针对管网进行优化
+    public void optstart() throws InterruptedException {//对整个气田进行优化
 
         for (String o : StaticDataMap7.rootofNeedOptiTree) {
             target_Opti = o;
             well_in_childtree = StaticDataMap7.well_in_childtree.get(o);
             allpoint_in_childtree = StaticDataMap7.allPoint_in_childtree.get(o);
             input(well_in_childtree);
-            ss = new Opti_Algorithm();//优化算法
+            ss = new SouSuo();//优化算法
             ss.start();
             Opti_Result_Storager.Q = ss.finalResult_X();
             Opti_Result_Storager.welllist = well_in_childtree;
@@ -84,7 +85,7 @@ public class Opti_Pipenet {
             ors.output_to_database();
         }
         System.out.println("");
-        System.out.println("。。。。。。。。。。。。。。。。。zhyh-优化结束！。。。。。。。。。。。。。。。。。。");
+        System.out.println("。。。。。。。。。。。。。。。。。优化结束！。。。。。。。。。。。。。。。。。。");
     }
 
     public static void main(String[] args) {

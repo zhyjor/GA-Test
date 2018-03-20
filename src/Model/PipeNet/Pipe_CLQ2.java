@@ -1,11 +1,11 @@
 /*
  * 这是本包各个类的功能汇集类，最终要累加各个井到主动增压点经过的各条管道的CLQ^2值
  */
-package zhyh.Model.PipeNet;
+package Model.PipeNet;
 
-import zhyh.Data.MapStorage.DynamicDataMap8;
-import zhyh.Data.MapStorage.StaticDataMap7;
-import zhyh.start.Index;
+import Data.MapStorage.DynamicDataMap8;
+import Data.MapStorage.StaticDataMap7;
+import Background_functions.Key2_Opti;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class Pipe_CLQ2 {
         stationP2 = stationP * stationP;
         pipeQmap = qc.input_Name_Q_list(pointlist, Q);//统计各条管道的流量
         PipeCLMap = DynamicDataMap8.Pipe_CL;
-        if (Index.True_or_Ideal == true) {//是否使用现场数据
+        if (Key2_Opti.True_or_Ideal == true) {//是否使用现场数据
             PipeCLMap = DynamicDataMap8.Real_Pipe_CL;
         }
         SumCLQ2();
