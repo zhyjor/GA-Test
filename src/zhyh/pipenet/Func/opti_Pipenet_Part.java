@@ -77,12 +77,9 @@ public class opti_Pipenet_Part {
      * 这个方法相当于井筒模型，计算的是井筒附加压力，利用井口压力推算井底压力，条件是井筒中无水
      */
     private double deltaP(double y, String well) {
-//        double Y = Math.pow(y, 0.5);
-//        double Pmax = Opti_Pipenet.wellholePmax.get(well);
-//        double Pmin = Opti_Pipenet.wellholePmin.get(well);
-//        double deltaP = (Pmax - Pmin) * (Y - 0.2) / 9.8 + Pmin;
-//        double P = Y + deltaP;
-        return 20;
+        double Y = Math.pow(y, 0.5);
+        double P = Y + 0.015;
+        return P * P;
     }
 
     /**

@@ -77,7 +77,9 @@ public class opti_Pipenet_Part {
         double Y = Math.pow(y, 0.5);
         double Pmax = OptiAll.wellholePmax.get(well);
         double Pmin = OptiAll.wellholePmin.get(well);
+        
         double deltaP = (Pmax - Pmin) * (Y - 0.2) / 9.8 + Pmin;
+//        System.out.println("deltaP:" + deltaP);
         double P = Y + deltaP;
         return P * P;
     }

@@ -31,8 +31,8 @@ public class Starter_third {
     public static void main(String[] args) {
         new Starter_third().starter3(true);
         for (String o : StaticDataMap7.rootofNeedOptiTree) {
-            System.out.println("allpoint in children tree" + StaticDataMap7.allPoint_in_childtree.get(o));
-            System.out.println("allwell in children tree" + StaticDataMap7.well_in_childtree.get(o));
+            System.out.println("allpoint in children tree " + o + ":" + StaticDataMap7.allPoint_in_childtree.get(o));
+            System.out.println("allwell in children tree " + o +":" + StaticDataMap7.well_in_childtree.get(o));
         }
     }
 }
