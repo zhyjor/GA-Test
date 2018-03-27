@@ -73,6 +73,9 @@ public class StaticDataMap7 {
     public static Map<String, Double> Q_best;//井最佳产量，m3/d
     public static Map<String, Double> Well_matching;//井间匹配性
     public static Map<String, Double> Well_pipe_matching;//井间匹配性
+    
+    public static Map<String, Double> Q_T_max;//井理论产量上限，m3/d
+    public static Map<String, Double> Q_T_min;//井理论产量下限，m3/d
 
     /**
      * 地层
@@ -138,6 +141,9 @@ public class StaticDataMap7 {
         Q_best = new HashMap();//井最佳产量，m3/d
         Well_matching = new HashMap();//井间匹配性
         Well_pipe_matching = new HashMap();//井间匹配性
+        
+        Q_T_max = new HashMap();//井理论产量上限，m3/d
+        Q_T_min = new HashMap();//井理论产量下限，m3/d
 
         CoalSeamlist = new ArrayList();//地层列表
         CoalIFP = new HashMap();//原始储层压力,MPa
@@ -237,6 +243,9 @@ public class StaticDataMap7 {
             Q_best.put(name, StaticData2.Q_best.get(i));
             Well_matching.put(name, StaticData2.Well_matching.get(i));
             Well_pipe_matching.put(name, StaticData2.Well_Pipe_matching.get(i));
+            
+            Q_T_max.put(name, StaticData2.Q_T_max.get(i));
+            Q_T_min.put(name, StaticData2.Q_T_min.get(i));
 
         }
     }

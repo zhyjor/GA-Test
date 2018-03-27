@@ -35,6 +35,9 @@ public class StaticData2 {
     public static List<Double> Q_best;//优化得最佳产量，m3/d
     public static List<Double> Well_matching;
     public static List<Double> Well_Pipe_matching;
+    
+    public static List<Double> Q_T_max;//理论得井底流量最大值，m3/d
+    public static List<Double> Q_T_min;//理论得井底流量最小值，m3/d
 
     /**
      * 阀组数据
@@ -144,6 +147,9 @@ public class StaticData2 {
         Q_best = control.ReadDouble(AllData1.WellSet, "Best_Q");//优化得井底流量最佳值，m3/d
         Well_matching = control.ReadDouble(AllData1.WellSet, "Well_Matching");//优化得井间匹配性
         Well_Pipe_matching = control.ReadDouble(AllData1.WellSet, "Well_Pipenet_Matching");//优化得井管匹配性
+        
+        Q_T_max = control.ReadDouble(AllData1.WellSet, "Q_T_max");//优化得井底流量最大值，m3/d
+        Q_T_min = control.ReadDouble(AllData1.WellSet, "Q_T_min");//优化得井底流量最小值，m3/d
 
         /**
          * 阀组数据
