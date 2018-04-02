@@ -68,7 +68,7 @@ public class opti_Pipenet_Part {
         for (int i = 0; i < num; i++) {//遍历全部井,将井的CLQ2摘出来
             point = allwelllist.get(i);
             double temp = pipeCLQ2map.get(point);
-            y[i] = deltaP(temp, point);
+            y[i] = temp;
         }
         return y;
     }
