@@ -56,8 +56,8 @@ public class Opti_Pipenet {
                 Qmax[i] = 0;
                 Qmin[i] = 0;
             } else {
-                Qmax[i] = StaticDataMap7.Q_T_max.get(name);
-                Qmin[i] = StaticDataMap7.Q_T_min.get(name);
+                Qmax[i] = StaticDataMap7.Q_max.get(name);
+                Qmin[i] = StaticDataMap7.Q_min.get(name);
             }
 
         }

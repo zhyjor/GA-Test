@@ -32,13 +32,14 @@ public class Key1_Updater1 {
         UPr.Pr_shouldbe();
         upp = new Update_Pipe_Mozuxishu_PipeCL();
         upp.mozu();//根据各条管道参数，计算其水力摩阻系数以及优化中用到的常数，输入数据库，
-        uc = new Updata_database_Pwf_Q_Constraint();
-        uc.update();//根据地层数据，计算各个井的井底压力与产量上下限，输入数据库
+//        uc = new Updata_database_Pwf_Q_Constraint();
+//        uc.update();//根据地层数据，计算各个井的井底压力与产量上下限，输入数据库
 
     }
 
     public static void main(String[] args) {
         Key1_Updater1 key = new Key1_Updater1();
         key.auxiliary_functions();
+        System.out.println("启动运行开段--Key1_Updater1");
     }
 }

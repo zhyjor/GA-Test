@@ -244,8 +244,8 @@ public class StaticDataMap7 {
             Well_matching.put(name, StaticData2.Well_matching.get(i));
             Well_pipe_matching.put(name, StaticData2.Well_Pipe_matching.get(i));
             
-            Q_T_max.put(name, StaticData2.Q_T_max.get(i));
-            Q_T_min.put(name, StaticData2.Q_T_min.get(i));
+//            Q_T_max.put(name, StaticData2.Q_T_max.get(i));
+//            Q_T_min.put(name, StaticData2.Q_T_min.get(i));
 
         }
     }
