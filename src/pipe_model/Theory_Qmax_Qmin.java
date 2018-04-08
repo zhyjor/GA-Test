@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model.PipeNet;
+package pipe_model;
 
+import Model.PipeNet.*;
 import Data.InputandClassify.NameList4;
 import Data.InputandClassify.StaticData2;
 import Data.MapStorage.DynamicDataMap8;
@@ -21,9 +22,9 @@ import java.util.Map;
 
 /**
  *
- * @author 武浩
+ * @author Theory_Qmax_Qmin
  */
-public class Update_pipe_data2 {
+public class Theory_Qmax_Qmin {
 
     private Map<String, Double> realQmap;//各口井的实际产量
     private List<String> namelist;//全部点的名称
@@ -32,76 +33,29 @@ public class Update_pipe_data2 {
     private Map<String, Integer> No;//管道的编号
     private Map<String, String> Gomap;//一个点的下游点
     private DBcontroller db = new DBcontroller();//数据库操作工具
-    private Update_EconomicalQ eco_q;
-    private Map<String, Double> Eco_Q;
-    private List<Double> pipe_eco_Q;
+   
     private List<Double> pipe_ideal_Q;
-    private List<Double> uti_rate;//管道实际输送效率
+    
     private Map<String, Double> pipe_CL;
-    private Map<String, Double> point_realQ;
-    private List<Double> Centerstation_Q;
-    private List<Double> Station_Q;
-    private List<Double> Valve_Q;
-    private List<Double> Well_Q;
 
-    /**
-     * 根据管道实际流量推算管道的压降
-     */
     public void update(boolean TF) {
-        Centerstation_Q = new ArrayList();
-        Station_Q = new ArrayList();
-        Valve_Q = new ArrayList();
-        Well_Q = new ArrayList();
+       
 
         pipe_CL = DynamicDataMap8.Pipe_CL;
-        if (TF) {
-            pipe_CL = DynamicDataMap8.Real_Pipe_CL;
-        }
-
+      
         realQmap = DynamicDataMap8.WellQ;
         comelist = StaticDataMap7.Allbelongmap;
         namelist = NameList4.namelistPipe;
         ID = StaticDataMap7.ID;
         No = StaticDataMap7.PipeNo;
         Gomap = StaticDataMap7.Gomap;
-        eco_q = new Update_EconomicalQ();
-        pipe_eco_Q = new ArrayList();
+        
         pipe_ideal_Q = new ArrayList();
-        uti_rate = new ArrayList();
-        eco_q.pipe_inPmap = DynamicDataMap8.pipe_InP;
-        eco_q.pipe_outPmap = DynamicDataMap8.pipe_OutP;
-        eco_q.economicalQ();
-        Eco_Q = eco_q.economicalQ;
-        List<Double> realQ = new ArrayList();
-        List<Integer> no = new ArrayList();
-        String name;
-        point_realQ = new HashMap();
-        for (String o : namelist) {
-            name = o + Gomap.get(o);
-            double q = sum_Q(o);
-            realQ.add(q);
-            no.add(No.get(name));
-        }
-
         pipe_PTQ();
-        update_eachfile();
+       
     }
 
-    /**
-     * 输入点名，查询该点流量，
-     */
-    private double sum_Q(String point) {
-        List<String> temp = comelist.get(point);
-        temp.add(point);
-        double leijia = 0.0;
-        for (String o : temp) {
-            if (ID.get(o) == 0) {
-                leijia = leijia + realQmap.get(o);
-            }
-        }
-        point_realQ.put(point, leijia);
-        return leijia;
-    }
+   
 
     private void pipe_PTQ() {
         int num = StaticDataMap7.PipeStartPointList.size();
@@ -122,19 +76,18 @@ public class Update_pipe_data2 {
             double outP = pipe_OutP.get(zhongdian);
             Outp.add(outP);
             Outt.add(pipe_OutT.get(zhongdian));
-            double eco_q = Eco_Q.get(qidian + zhongdian);
+            
             double theo_q = idealQ(inP, outP, pipe_CL.get(qidian + zhongdian));
-            pipe_eco_Q.add(eco_q);
+           
             pipe_ideal_Q.add(theo_q);
-            uti_rate.add(DynamicDataMap8.RealQ.get(qidian + zhongdian) / eco_q);
-            trans_rate.add(DynamicDataMap8.RealQ.get(qidian + zhongdian) / theo_q);
+           
             No.add(i + 1);
         }
 
-        db.UpdateData("Pipeline", "Ecnomical_Q", pipe_eco_Q, "SequenceNumber", No);
+        
         db.UpdateData("Pipeline", "TheoreticalQ", pipe_ideal_Q, "SequenceNumber", No);
-        db.UpdateData("Pipeline", "UtilizationEfficiency", uti_rate, "SequenceNumber", No);
-        db.UpdateData("Pipeline", "TransportEfficiency", trans_rate, "SequenceNumber", No);
+      
+       
     }
 
     private double idealQ(double qidainP, double zhongdianP, double CL) {
@@ -150,27 +103,5 @@ public class Update_pipe_data2 {
             q = 0;
         }
         return q;
-    }
-
-    /**
-     * 根据统计数据更新其他几张表
-     */
-    private void update_eachfile() {
-
-        for (String o : StaticData2.getCenterStationName()) {
-            Centerstation_Q.add(point_realQ.get(o));
-        }
-        db.UpdateData("CenterStation", "Q_shouldbe", Centerstation_Q, "Name", StaticData2.getCenterStationName());
-
-        for (String o : StaticData2.getStationName()) {
-            Station_Q.add(point_realQ.get(o));
-        }
-        db.UpdateData("Station", "Q_shouldbe", Station_Q, "Name", StaticData2.getStationName());
-
-        for (String o : StaticData2.getValveName()) {
-            Valve_Q.add(point_realQ.get(o));
-        }
-        db.UpdateData("Valve", "Q_shouldbe", Valve_Q, "Name", StaticData2.getValveName());
-
     }
 }

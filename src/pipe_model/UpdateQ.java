@@ -12,9 +12,7 @@ import Data.MapStorage.Starter_third;
  * @author JackHou
  */
 public class UpdateQ {
-    
-    
-    
+
     public static void main(String args[]){
         Starter_third st = new Starter_third();
         st.starter3(false);//FALSE是关闭树结构显示界面

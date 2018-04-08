@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  *
- * @author 武浩
+ * @author 武浩Theory_Qmax_Qmin
  */
 public class Update_pipe_data2 {
 

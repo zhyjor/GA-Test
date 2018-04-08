@@ -5,6 +5,8 @@
  */
 package zhyh.pipenet.Func;
 
+import java.util.Arrays;
+
 
 /**
  *
@@ -45,16 +47,23 @@ public class Opti_Model_Link_Algo_Model {
      */
     private double pipenetOutput(double[] X, double[] peican){
         int num = X.length;
-        int num2 = peican.length;
+//        int num2 = peican.length;
         double result = 0;
         double y1[] = Curve1(X);//管网模型的输出
-       
+//       System.out.println("zhyh-单管网模型的适应性函数：" +Arrays.toString(y1));
         for (int i = 0; i < num; i++) {
-            result = result + y1[i];
+            if(y1[i]<4 ){
+                result = result + X[i]+Math.pow((y1[i]-4), 3);
+            }else if(y1[1]>16){
+                result = result + X[i]+Math.pow((16-y1[i]),3);
+            }else{
+                result = result + X[i];
+            }
+            
 //            result = result + 1/(Math.pow((y1[i]-peican[i]),2));
         }
        
-//        System.out.println("zhyh-单管网模型的适应性函数：" + result);
+//        System.out.println("zhyh-单管网模型的适应性函数：" +result);
         return result;
     }
 

@@ -30,7 +30,7 @@ public class Algo_Model_link_Opti_Model {
         Qmin = Opti_Pipenet.Qmin;//目标点集的产量下限，用于GAdecoder类中
         well_in_childtree = Opti_Pipenet.well_in_childtree;//目标点集的名称
         num = Qmax.length;
-        getsetPeiCanByType(well_in_childtree);
+//        getsetPeiCanByType(well_in_childtree);
     }
     
     public void getsetPeiCanByType(List<String> tree_well){
